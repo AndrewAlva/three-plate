@@ -1,4 +1,5 @@
 import '../css/app.css'
+import './utils.js'
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import * as dat from 'dat.gui'
@@ -20,26 +21,14 @@ const canvas = document.querySelector('canvas.webgl')
 var scene = scene1;
 
 
-/**
- * Sizes
- */
-const sizes = {
-    width: window.innerWidth,
-    height: window.innerHeight
-}
-
 window.addEventListener('resize', () =>
 {
-    // Update sizes
-    sizes.width = window.innerWidth
-    sizes.height = window.innerHeight
-
     // Update camera
-    camera.aspect = sizes.width / sizes.height
+    camera.aspect = Utils.sizes.width / Utils.sizes.height
     camera.updateProjectionMatrix()
 
     // Update renderer
-    renderer.setSize(sizes.width, sizes.height)
+    renderer.setSize(Utils.sizes.width, Utils.sizes.height)
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 })
 
@@ -47,7 +36,7 @@ window.addEventListener('resize', () =>
 /**
  * Camera
  */
-const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height)
+const camera = new THREE.PerspectiveCamera(75, Utils.sizes.width / Utils.sizes.height)
 camera.position.z = 3
 // scene.add(camera) // Apparently this isn't needed
 
@@ -62,7 +51,7 @@ controls.enableDamping = true
 const renderer = new THREE.WebGLRenderer({
     canvas: canvas
 })
-renderer.setSize(sizes.width, sizes.height)
+renderer.setSize(Utils.sizes.width, Utils.sizes.height)
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 
 
