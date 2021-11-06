@@ -62,18 +62,20 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 
  const tick = () =>
  {
-     // Update controls
-     controls.update()
+    // Utils update
+    Utils.elapsedTime = clock.getElapsedTime();
+     
+    // Update controls
+    controls.update()
+
+    //  Scene updatee
+    scene.update();
+     
+    // Render
+    renderer.render(scene, camera)
  
-     // Shader animations
-     let elapsedTime = clock.getElapsedTime();
-     // material.uniforms.uAnimation.value += Math.sin(elapsedTime * .7) * .25;
- 
-     // Render
-     renderer.render(scene, camera)
- 
-     // Call tick again on the next frame
-     window.requestAnimationFrame(tick)
+    // Call tick again on the next frame
+    window.requestAnimationFrame(tick)
  }
  
  tick()

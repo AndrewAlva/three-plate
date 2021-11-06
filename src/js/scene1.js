@@ -33,4 +33,16 @@ camera.position.z = 9
 scene1.add(camera)
 scene1.myCamera = camera;
 
+
+/**
+ * Animations
+ */
+scene1.update = function() {
+    let time = Utils.elapsedTime * 1;
+    let alpha = Math.abs( Math.sin(time) );
+
+    material.uniforms.uAlpha.value = alpha;
+}
+
+
 export {scene1};
