@@ -2,6 +2,14 @@ import * as THREE from 'three'
 import testVertexShader from './shaders/test/vertex.glsl'
 import testFragmentShader from './shaders/test/fragment.glsl'
 
+
+/**
+ * GUI
+ */
+var scene1debugger = window.Utils.gui.addFolder('Scene 1');
+scene1debugger.open();
+
+
 /**
  * Scene
  */
@@ -20,9 +28,14 @@ const material = new THREE.ShaderMaterial({
     transparent: true,
     depthTest: false,
     uniforms: {
+        uRadius: { value: 0.45 },
         uAlpha: { value: 0.8 },
     },
- })
+});
+
+scene1debugger.add(material.uniforms.uRadius, 'value').min(0.0001).max(0.45).step(0.0001).name('uRadius');
+
+
 const mesh = new THREE.Mesh(geometry, material)
 const mesh2 = new THREE.Mesh(geometry2, material)
 scene1.add(mesh)
